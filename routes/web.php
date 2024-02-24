@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\UploadController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/local/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return view('localization');
 });
 
 
