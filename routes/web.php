@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\UploadController;
+use App\Services\PaymentGateway\Payment;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,10 @@ Route::get('/contact', function(){
     return view('contact');
 })->name('contact');
 
-Route::get('/upload', [UploadController::class, 'uploadForm'])->name('upload.uploadform');
+Route::get('/upload',[UploadController::class, 'uploadForm'])->name('upload.uploadform');
 
-Route::post('/upload',[UploadController::class,'uploadFile'])->name('upload.uploadfile');
+Route::post('/upload',[UploadController::class, 'uploadFile'])->name('upload.uploadfile');
+
+Route::get('/payment', function(){
+    return Payment::process();
+});
