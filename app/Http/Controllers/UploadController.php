@@ -16,7 +16,13 @@ class UploadController extends Controller
 
     public function uploadFile(Request $request)
     {
-        $request->file->store('public');  // storeage/app/public 폴러로 파일이 저장처리 되는..
-        return "파일이 성공적으로 저장되었습니다.";
+        $rs = $request->file->store('public');  // storeage/app/public 폴러로 파일이 저장처리 되는..
+        //public/7jgZL9c2xD65wa7DdBOby9AJRThLVHLlPhUacCRa.jpg
+        
+        $rs = str_replace('public/','storage/',$rs);
+        $rs ="<img src='".$rs."' width='500'>";
+
+
+        return "파일이 성공적으로 저장되었습니다. $rs";
     }
 }
